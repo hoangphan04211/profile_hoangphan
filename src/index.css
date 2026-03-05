@@ -1,0 +1,118 @@
+@import "tailwindcss";
+
+@theme {
+  --font-mono: "Fira Code", monospace;
+
+  --color-cyber-purple: #b026ff;
+  --color-cyber-blue: #00f0ff;
+  --color-cyber-pink: #ff003c;
+  --color-cyber-green: #39ff14;
+  --color-cyber-bg: #050505;
+  --color-cyber-surface: rgba(10, 10, 15, 0.8);
+  --color-cyber-surface-glow: rgba(0, 240, 255, 0.1);
+
+  --animate-glitch: glitch 1s linear infinite;
+  --animate-glow: glow 2s ease-in-out infinite alternate;
+  --animate-scanline: scanline 8s linear infinite;
+  --animate-matrix-rain: matrix-rain 20s linear infinite;
+}
+
+@layer base {
+  :root {
+    --bg-color: #050505;
+    --text-color: #e0e0e0;
+  }
+
+  body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Inter', system-ui, sans-serif;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: var(--color-cyber-blue);
+    color: var(--color-cyber-bg);
+  }
+}
+
+@layer utilities {
+  .glass-panel {
+    background: var(--color-cyber-surface);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(0, 240, 255, 0.2);
+    box-shadow: 0 0 15px var(--color-cyber-surface-glow);
+  }
+  
+  .glass-panel-glow {
+    background: var(--color-cyber-surface);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--color-cyber-blue);
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.4), inset 0 0 10px rgba(0, 240, 255, 0.1);
+  }
+  
+  .text-glow-blue {
+    text-shadow: 0 0 10px var(--color-cyber-blue), 0 0 20px var(--color-cyber-blue);
+  }
+
+  .text-glow-purple {
+    text-shadow: 0 0 10px var(--color-cyber-purple), 0 0 20px var(--color-cyber-purple);
+  }
+
+  .text-glow-green {
+    text-shadow: 0 0 10px var(--color-cyber-green), 0 0 20px var(--color-cyber-green);
+  }
+}
+
+/* Custom Animations Definitions */
+@keyframes glitch {
+  2%, 64% {
+    transform: translate(2px, 0) skew(0deg);
+  }
+  4%, 60% {
+    transform: translate(-2px, 0) skew(0deg);
+  }
+  62% {
+    transform: translate(0, 0) skew(5deg);
+  }
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 5px #00f0ff, 0 0 10px #00f0ff, 0 0 15px #00f0ff;
+  }
+  to {
+    box-shadow: 0 0 10px #b026ff, 0 0 20px #b026ff, 0 0 30px #b026ff;
+  }
+}
+
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+/* Custom Scrollbar for Hacker feel */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-cyber-bg);
+  border-left: 1px solid rgba(0, 240, 255, 0.2);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-cyber-blue);
+  box-shadow: 0 0 10px var(--color-cyber-blue);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-cyber-purple);
+  box-shadow: 0 0 10px var(--color-cyber-purple);
+}
